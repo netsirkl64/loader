@@ -83,7 +83,7 @@ struct SettingsSheetView: View {
                     console.log("[*] Started Substitute, respring to enable tweaks")
 
                     spawn(command: "/usr/libexec/firmware", args: [""], root: true)
-                    console.log("[*] Fixed dpkg, cydia substrate, and preferenceloader errors")
+                    console.log("[*] Fixed dpkg, apt, cydia substrate, and preferenceloader")
 
                     spawn(command: "/usr/bin/sbreload", args: [], root: true)
                     console.log("[*] Resprung the device... but you probably won't see this :)")
