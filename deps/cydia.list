@@ -1,0 +1,6 @@
+deb https://apt.bingner.com/ ./
+deb https://opa334.github.io/ ./
+deb https://repo.ginsu.dev/ ./
+deb https://repo.chariz.com/ ./
+deb https://repo.packix.com/ ./
+deb https://repo.dynastic.co/ ./
