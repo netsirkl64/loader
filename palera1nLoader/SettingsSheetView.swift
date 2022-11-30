@@ -19,7 +19,7 @@ struct SettingsSheetView: View {
         Tool(name: "Launch Daemons", desc: "Start daemons using launchctl", action: ToolAction.daemons),
         Tool(name: "Respring", desc: "Restart SpringBoard", action: ToolAction.respring),
         Tool(name: "Activate Tweaks", desc: "Runs substitute-launcher to activate tweaks", action: ToolAction.tweaks),
-        Tool(name: "Do All", desc: "Do all of the above", action: ToolAction.all),
+        Tool(name: "Kickstart", desc: "Do all of the above and fix dpkg", action: ToolAction.all),
     ]
     
     var body: some View {
@@ -73,8 +73,17 @@ struct SettingsSheetView: View {
                     spawn(command: "/bin/launchctl", args: ["bootstrap", "system", "/Library/LaunchDaemons"], root: true)
                     console.log("[*] Launched daemons")
 
+                    spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/apt"], root: true)
+                    console.log("[*] Fixed zsh: killed     apt")
+
+                    spawn(command: "/usr/bin/ldid", args: ["-s", "/etc/rc.d/substitute-launcher"], root: true)
+                    console.log("[*] Fixed zsh: killed     /etc/rc.d/substitute-launcher")
+
                     spawn(command: "/etc/rc.d/substitute-launcher", args: [], root: true)
                     console.log("[*] Started Substitute, respring to enable tweaks")
+
+                    spawn(command: "/usr/libexec/firmware", args: [""], root: true)
+                    console.log("[*] Fixed dpkg, cydia substrate, and preferenceloader errors")
 
                     spawn(command: "/usr/bin/sbreload", args: [], root: true)
                     console.log("[*] Resprung the device... but you probably won't see this :)")
