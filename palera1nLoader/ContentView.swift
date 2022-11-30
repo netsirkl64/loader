@@ -204,6 +204,9 @@ struct ContentView: View {
                 
                 console.log("[*] Preparing Bootstrap")
                 DispatchQueue.global(qos: .utility).async {
+                    spawn(command: "/usr/bin/sh", args: ["/preinst_bootstrap.sh"], root: true)
+                    spawn(command: helper, args: ["-i", tar], root: true)
+                    spawn(command: "/usr/bin/dpkg", args: ["-i", deb], root: true)
                     let ret = spawn(command: "/usr/bin/sh", args: ["/prep_bootstrap.sh"], root: true)
                     DispatchQueue.main.async {
                         if ret != 0 {
@@ -224,6 +227,8 @@ struct ContentView: View {
                                 
                                 console.log("[*] Registering Sileo in uicache")
                                 DispatchQueue.global(qos: .utility).async {
+                                    spawn(command: "/usr/bin/uicache", args: ["-p", "/Applications/Cydia.app"], root: true)
+                                    spawn(command: "/usr/bin/uicache", args: ["-p", "/Applications/Zebra.app"], root: true)
                                     let ret = spawn(command: "/usr/bin/uicache", args: ["-p", "/Applications/Sileo.app"], root: true)
                                     DispatchQueue.main.async {
                                         if ret != 0 {
