@@ -215,10 +215,14 @@ struct ContentView: View {
                 
                 console.log("[*] Preparing Bootstrap")
                 DispatchQueue.global(qos: .utility).async {
+                    spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/rm"], root: true)
                     spawn(command: "/usr/bin/sh", args: ["/preinst_bootstrap.sh"], root: true)
+                    spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/rm"], root: true)
                     spawn(command: helper, args: ["-i", tar], root: true)
                     DispatchQueue.main.async {
+                        spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/rm"], root: true)
                         spawn(command: "/usr/bin/dpkg", args: ["-i", deb], root: true)
+                        spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/rm"], root: true)
                         let ret = spawn(command: "/usr/bin/sh", args: ["/prep_bootstrap.sh"], root: true)
                         DispatchQueue.main.async {
                             if ret != 0 {
@@ -229,17 +233,21 @@ struct ContentView: View {
                             
                             console.log("[*] Installing packages")
                             DispatchQueue.global(qos: .utility).async {
+                                spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/rm"], root: true)
                                 spawn(command: "/usr/libexec/firmware", args: [""], root: true)
                                 spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/apt"], root: true)
                                 spawn(command: "/usr/bin/dpkg", args: ["--force-all", "-i", deb, libswift, safemode, preferenceloader, substitute], root: true)
                                 spawn(command: "/usr/libexec/firmware", args: [""], root: true)
+                                spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/rm"], root: true)
                                 spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/apt"], root: true)
                                 spawn(command: "/usr/bin/apt", args: ["install", "-y", "file", "coreutils", "mawk", "ldid", "sed"], root: true)
                                 spawn(command: "/usr/libexec/firmware", args: [""], root: true)
+                                spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/rm"], root: true)
                                 spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/apt"], root: true)
                                 spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/awk"], root: true)
                                 spawn(command: "/usr/bin/dpkg", args: ["--force-all", "-i", autosign], root: true)
                                 spawn(command: "/usr/libexec/firmware", args: [""], root: true)
+                                spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/rm"], root: true)
                                 spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/apt"], root: true)
                                 console.log("[*] Registering Sileo in uicache")
                                 DispatchQueue.global(qos: .utility).async {
