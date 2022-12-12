@@ -4,12 +4,17 @@ Suites: ./
 Components:
 
 Types: deb
+URIs: https://repo.chariz.com/
+Suites: ./
+Components:
+
+Types: deb
 URIs: http://apt.thebigboss.org/repofiles/cydia/
 Suites: stable
 Components: main
 
 Types: deb
-URIs: https://pl.plooshi.xyz/
-Suites: ./
-Components:
-
+URIs: https://strap.palera.in/
+Suites: iphoneos-arm64/1800
+Trusted: yes
+Components: main
