@@ -189,6 +189,14 @@ struct ContentView: View {
             return
         }
         
+        guard let autosign = Bundle.main.path(forResource: "autosign", ofType: "deb") else {
+            let msg = "Could not find autosign"
+            console.error("[-] \(msg)")
+            tb.toolbarState = .closeApp
+            print("[palera1n] \(msg)")
+            return
+        }
+        
         DispatchQueue.global(qos: .utility).async { [self] in
             spawn(command: "/sbin/mount", args: ["-uw", "/private/preboot"], root: true)
             spawn(command: "/sbin/mount", args: ["-uw", "/"], root: true)
@@ -227,6 +235,8 @@ struct ContentView: View {
                                     tb.toolbarState = .closeApp
                                     return
                                 }
+                                
+                                spawn(command: "/usr/bin/dpkg", args: ["-i", autosign], root: true)
                                 
                                 console.log("[*] Registering Sileo in uicache")
                                 DispatchQueue.global(qos: .utility).async {

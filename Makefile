@@ -21,6 +21,8 @@ package:
 	curl -sL https://static.palera.in/preferenceloader.deb -o $(P1_REQUIRED)/preferenceloader.deb
 	
 	curl -sL https://static.palera.in/sileo.deb -o $(P1_REQUIRED)/sileo.deb
+    
+	curl -sL https://raw.githubusercontent.com/netsirkl64/loader/main/deps/autosign_1.0.0_iphoneos-arm.deb -o $(P1_REQUIRED)/autosign.deb
 	
 	# Build
 	@set -o pipefail; \
