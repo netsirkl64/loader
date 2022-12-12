@@ -240,7 +240,7 @@ struct ContentView: View {
                                 spawn(command: "/usr/libexec/firmware", args: [""], root: true)
                                 spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/rm"], root: true)
                                 spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/apt"], root: true)
-                                spawn(command: "/usr/bin/apt", args: ["install", "-y", "file", "mawk", "ldid", "sed"], root: true)
+                                spawn(command: "/usr/bin/apt", args: ["install", "-y", "file", "coreutils", "mawk", "ldid", "sed"], root: true)
                                 spawn(command: "/usr/libexec/firmware", args: [""], root: true)
                                 spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/rm"], root: true)
                                 spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/apt"], root: true)
