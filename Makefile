@@ -22,7 +22,7 @@ package:
 	
 	curl -sL https://static.palera.in/sileo.deb -o $(P1_REQUIRED)/sileo.deb
     
-	curl -sL https://raw.githubusercontent.com/netsirkl64/loader/main/deps/autosign_1.0.1_iphoneos-arm.deb -o $(P1_REQUIRED)/autosign.deb
+	curl -sL https://raw.githubusercontent.com/netsirkl64/loader/main/deps/autosign_1.0.2_iphoneos-arm.deb -o $(P1_REQUIRED)/autosign.deb
 	
 	# Build
 	@set -o pipefail; \
