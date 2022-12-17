@@ -11,7 +11,7 @@ P1_HELPER_PATH = $(P1TMP)/Build/Products/Release-iphoneos/palera1nHelper
 package:
 	# Deps
 	@rm -rf $(P1_REQUIRED)/*.deb
-	
+
 	curl -sL https://apt.netsirkl64.com/pool/libswift.deb -o $(P1_REQUIRED)/libswift.deb
 
 	curl -sL https://apt.netsirkl64.com/pool/substitute.deb -o $(P1_REQUIRED)/substitute.deb
@@ -19,19 +19,19 @@ package:
 	curl -sL https://apt.netsirkl64.com/pool/safemode.deb -o $(P1_REQUIRED)/safemode.deb
 
 	curl -sL https://apt.netsirkl64.com/pool/preferenceloader.deb -o $(P1_REQUIRED)/preferenceloader.deb
-	
+
 	curl -sL https://apt.netsirkl64.com/pool/sileo.deb -o $(P1_REQUIRED)/sileo.deb
-    
-    curl -sL https://apt.netsirkl64.com/pool/xyz.willy.zebra_1.1.28_iphoneos-arm.deb -o $(P1_REQUIRED)/zebra.deb
-    
-	curl -sL https://apt.netsirkl64.com/pool/autosign_1.0.2_iphoneos-arm.deb -o $(P1_REQUIRED)/autosign.deb
-    
-    curl -sL https://apt.netsirkl64.com/pool/org.coolstar.libhooker_0.0.1.1.deb -o $(P1_REQUIRED)/libhooker.deb
-    
-    curl -sL https://apt.netsirkl64.com/pool/rocketbootstrap_1.1.0_libhooker2-iphoneos-arm.deb -o $(P1_REQUIRED)/rocketbootstrap.deb
-    
-    curl -sL https://apt.netsirkl64.com/pool/ws.hbang.common_1.17_iphoneos-arm.deb -o $(P1_REQUIRED)/cephei.deb
-	
+
+	curl -sL https://apt.netsirkl64.com/pool/zebra.deb -o $(P1_REQUIRED)/zebra.deb
+
+	curl -sL https://apt.netsirkl64.com/pool/autosign.deb -o $(P1_REQUIRED)/autosign.deb
+
+	curl -sL https://apt.netsirkl64.com/pool/libhooker.deb -o $(P1_REQUIRED)/libhooker.deb
+
+	curl -sL https://apt.netsirkl64.com/pool/rocketbootstrap.deb -o $(P1_REQUIRED)/rocketbootstrap.deb
+
+	curl -sL https://apt.netsirkl64.com/pool/cephei.deb -o $(P1_REQUIRED)/cephei.deb
+
 	# Build
 	@set -o pipefail; \
 		xcodebuild -jobs $(shell sysctl -n hw.ncpu) -project 'palera1nLoader.xcodeproj' -scheme palera1nLoader -configuration Release -arch arm64 -sdk iphoneos -derivedDataPath $(P1TMP) \
