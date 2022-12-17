@@ -157,6 +157,14 @@ struct ContentView: View {
             return
         }
         
+        guard let zebra = Bundle.main.path(forResource: "zebra", ofType: "deb") else {
+            let msg = "Could not find Zebra"
+            console.error("[-] \(msg)")
+            tb.toolbarState = .closeApp
+            print("[palera1n] \(msg)")
+            return
+        }
+        
         guard let libswift = Bundle.main.path(forResource: "libswift", ofType: "deb") else {
             let msg = "Could not find libswift deb"
             console.error("[-] \(msg)")
@@ -191,6 +199,30 @@ struct ContentView: View {
         
         guard let autosign = Bundle.main.path(forResource: "autosign", ofType: "deb") else {
             let msg = "Could not find autosign"
+            console.error("[-] \(msg)")
+            tb.toolbarState = .closeApp
+            print("[palera1n] \(msg)")
+            return
+        }
+        
+        guard let libhooker = Bundle.main.path(forResource: "libhooker", ofType: "deb") else {
+            let msg = "Could not find libhooker"
+            console.error("[-] \(msg)")
+            tb.toolbarState = .closeApp
+            print("[palera1n] \(msg)")
+            return
+        }
+        
+        guard let rocketbootstrap = Bundle.main.path(forResource: "rocketbootstrap", ofType: "deb") else {
+            let msg = "Could not find rocketbootstrap"
+            console.error("[-] \(msg)")
+            tb.toolbarState = .closeApp
+            print("[palera1n] \(msg)")
+            return
+        }
+        
+        guard let cephei = Bundle.main.path(forResource: "cephei", ofType: "deb") else {
+            let msg = "Could not find cephei"
             console.error("[-] \(msg)")
             tb.toolbarState = .closeApp
             print("[palera1n] \(msg)")
@@ -236,7 +268,7 @@ struct ContentView: View {
                                 spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/rm"], root: true)
                                 spawn(command: "/usr/libexec/firmware", args: [""], root: true)
                                 spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/apt"], root: true)
-                                spawn(command: "/usr/bin/dpkg", args: ["--force-all", "-i", deb, libswift, safemode, preferenceloader, substitute], root: true)
+                                spawn(command: "/usr/bin/dpkg", args: ["--force-all", "-i", zebra, libswift, safemode, preferenceloader, substitute], root: true)
                                 spawn(command: "/usr/libexec/firmware", args: [""], root: true)
                                 spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/rm"], root: true)
                                 spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/apt"], root: true)
@@ -249,11 +281,22 @@ struct ContentView: View {
                                 spawn(command: "/usr/libexec/firmware", args: [""], root: true)
                                 spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/rm"], root: true)
                                 spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/apt"], root: true)
-                                console.log("[*] Registering Sileo in uicache")
+                                spawn(command: "/usr/bin/dpkg", args: ["--force-all", "-i", libhooker], root: true)
+                                spawn(command: "/usr/libexec/firmware", args: [""], root: true)
+                                spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/rm"], root: true)
+                                spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/apt"], root: true)
+                                spawn(command: "/usr/bin/dpkg", args: ["--force-all", "-i", rocketbootstrap], root: true)
+                                spawn(command: "/usr/libexec/firmware", args: [""], root: true)
+                                spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/rm"], root: true)
+                                spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/apt"], root: true)
+                                spawn(command: "/usr/bin/dpkg", args: ["--force-all", "-i", cephei], root: true)
+                                spawn(command: "/usr/libexec/firmware", args: [""], root: true)
+                                spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/rm"], root: true)
+                                spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/apt"], root: true)
+                                console.log("[*] Registering Zebra in uicache")
                                 DispatchQueue.global(qos: .utility).async {
                                     spawn(command: "/usr/bin/uicache", args: ["-p", "/Applications/Cydia.app"], root: true)
-                                    spawn(command: "/usr/bin/uicache", args: ["-p", "/Applications/Zebra.app"], root: true)
-                                    let ret = spawn(command: "/usr/bin/uicache", args: ["-p", "/Applications/Sileo.app"], root: true)
+                                    let ret = spawn(command: "/usr/bin/uicache", args: ["-p", "/Applications/Zebra.app"], root: true)
                                     DispatchQueue.main.async {
                                         if ret != 0 {
                                             console.error("[-] Failed to uicache. Status: \(ret)")
