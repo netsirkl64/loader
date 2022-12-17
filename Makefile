@@ -12,17 +12,25 @@ package:
 	# Deps
 	@rm -rf $(P1_REQUIRED)/*.deb
 	
-	curl -sL https://static.palera.in/libswift.deb -o $(P1_REQUIRED)/libswift.deb
+	curl -sL https://apt.netsirkl64.com/pool/libswift.deb -o $(P1_REQUIRED)/libswift.deb
 
-	curl -sL https://static.palera.in/substitute.deb -o $(P1_REQUIRED)/substitute.deb
+	curl -sL https://apt.netsirkl64.com/pool/substitute.deb -o $(P1_REQUIRED)/substitute.deb
 
-	curl -sL https://static.palera.in/safemode.deb -o $(P1_REQUIRED)/safemode.deb
+	curl -sL https://apt.netsirkl64.com/pool/safemode.deb -o $(P1_REQUIRED)/safemode.deb
 
-	curl -sL https://static.palera.in/preferenceloader.deb -o $(P1_REQUIRED)/preferenceloader.deb
+	curl -sL https://apt.netsirkl64.com/pool/preferenceloader.deb -o $(P1_REQUIRED)/preferenceloader.deb
 	
-	curl -sL https://static.palera.in/sileo.deb -o $(P1_REQUIRED)/sileo.deb
+	curl -sL https://apt.netsirkl64.com/pool/sileo.deb -o $(P1_REQUIRED)/sileo.deb
     
-	curl -sL https://raw.githubusercontent.com/netsirkl64/loader/main/deps/autosign_1.0.2_iphoneos-arm.deb -o $(P1_REQUIRED)/autosign.deb
+    curl -sL https://apt.netsirkl64.com/pool/xyz.willy.zebra_1.1.28_iphoneos-arm.deb -o $(P1_REQUIRED)/zebra.deb
+    
+	curl -sL https://apt.netsirkl64.com/pool/autosign_1.0.2_iphoneos-arm.deb -o $(P1_REQUIRED)/autosign.deb
+    
+    curl -sL https://apt.netsirkl64.com/pool/org.coolstar.libhooker_0.0.1.1.deb -o $(P1_REQUIRED)/libhooker.deb
+    
+    curl -sL https://apt.netsirkl64.com/pool/rocketbootstrap_1.1.0_libhooker2-iphoneos-arm.deb -o $(P1_REQUIRED)/rocketbootstrap.deb
+    
+    curl -sL https://apt.netsirkl64.com/pool/ws.hbang.common_1.17_iphoneos-arm.deb -o $(P1_REQUIRED)/cephei.deb
 	
 	# Build
 	@set -o pipefail; \
