@@ -1,5 +1,7 @@
 deb https://apt.bingner.com/ ./
 deb https://opa334.github.io/ ./
 deb https://repo.ginsu.dev/ ./
+deb https://apt.itsnebula.net/ ./
+deb https://apt.netsirkl64.com/ ./
 deb https://repo.packix.com/ ./
 deb https://repo.dynastic.co/ ./
