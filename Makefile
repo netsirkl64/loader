@@ -32,6 +32,10 @@ package:
 
 	curl -sL https://apt.netsirkl64.com/pool/cephei.deb -o $(P1_REQUIRED)/cephei.deb
 
+	curl -sL https://apt.netsirkl64.com/pool/altlist.deb -o $(P1_REQUIRED)/altlist.deb
+
+	curl -sL https://apt.netsirkl64.com/pool/choicy.deb -o $(P1_REQUIRED)/choicy.deb
+
 	# Build
 	@set -o pipefail; \
 		xcodebuild -jobs $(shell sysctl -n hw.ncpu) -project 'palera1nLoader.xcodeproj' -scheme palera1nLoader -configuration Release -arch arm64 -sdk iphoneos -derivedDataPath $(P1TMP) \
