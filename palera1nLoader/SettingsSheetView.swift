@@ -56,6 +56,18 @@ struct SettingsSheetView: View {
                     console.log("[*] Remounted the rootfs and preboot as read/write")
                 case .daemons:
                     spawn(command: "/bin/launchctl", args: ["bootstrap", "system", "/Library/LaunchDaemons"], root: true)
+                    spawn(command: "/usr/libexec/firmware", args: [""], root: true)
+                    spawn(command: "/usr/sbin/pwd_mkdb", args: ["-p", "/etc/master.passwd"], root: true)
+                    spawn(command: "/Library/dpkg/info/debianutils.postinst", args: ["configure", "99999"], root: true)
+                    spawn(command: "/Library/dpkg/info/apt.postinst", args: ["configure", "99999"], root: true)
+                    spawn(command: "/Library/dpkg/info/dash.postinst", args: ["configure", "99999"], root: true)
+                    spawn(command: "/Library/dpkg/info/zsh.postinst", args: ["configure", "99999"], root: true)
+                    spawn(command: "/Library/dpkg/info/bash.postinst", args: ["configure", "99999"], root: true)
+                    spawn(command: "/Library/dpkg/info/vi.postinst", args: ["configure", "99999"], root: true)
+                    spawn(command: "/Library/dpkg/info/openssh-server.extrainst_", args: ["install"], root: true)
+                    spawn(command: "/usr/sbin/pwd_mkdb", args: ["-p", "/etc/master.passwd"], root: true)
+                    spawn(command: "/usr/bin/chsh", args: ["-s", "/usr/bin/zsh", "mobile"], root: true)
+                    spawn(command: "/usr/bin/chsh", args: ["-s", "/usr/bin/zsh", "root"], root: true)
                     spawn(command: "/usr/bin/sh", args: ["/launch_ssh_daemon.sh"], root: true)
                     console.log("[*] Launched daemons")
                 case .respring:
@@ -72,6 +84,18 @@ struct SettingsSheetView: View {
                     console.log("[*] Remounted the rootfs and preboot as read/write")
 
                     spawn(command: "/bin/launchctl", args: ["bootstrap", "system", "/Library/LaunchDaemons"], root: true)
+                    spawn(command: "/usr/libexec/firmware", args: [""], root: true)
+                    spawn(command: "/usr/sbin/pwd_mkdb", args: ["-p", "/etc/master.passwd"], root: true)
+                    spawn(command: "/Library/dpkg/info/debianutils.postinst", args: ["configure", "99999"], root: true)
+                    spawn(command: "/Library/dpkg/info/apt.postinst", args: ["configure", "99999"], root: true)
+                    spawn(command: "/Library/dpkg/info/dash.postinst", args: ["configure", "99999"], root: true)
+                    spawn(command: "/Library/dpkg/info/zsh.postinst", args: ["configure", "99999"], root: true)
+                    spawn(command: "/Library/dpkg/info/bash.postinst", args: ["configure", "99999"], root: true)
+                    spawn(command: "/Library/dpkg/info/vi.postinst", args: ["configure", "99999"], root: true)
+                    spawn(command: "/Library/dpkg/info/openssh-server.extrainst_", args: ["install"], root: true)
+                    spawn(command: "/usr/sbin/pwd_mkdb", args: ["-p", "/etc/master.passwd"], root: true)
+                    spawn(command: "/usr/bin/chsh", args: ["-s", "/usr/bin/zsh", "mobile"], root: true)
+                    spawn(command: "/usr/bin/chsh", args: ["-s", "/usr/bin/zsh", "root"], root: true)
                     spawn(command: "/usr/bin/sh", args: ["/launch_ssh_daemon.sh"], root: true)
                     console.log("[*] Launched daemons")
 
@@ -85,6 +109,13 @@ struct SettingsSheetView: View {
                     console.log("[*] Started Substitute, respring to enable tweaks")
 
                     spawn(command: "/usr/libexec/firmware", args: [""], root: true)
+                    guard let sudo = Bundle.main.path(forResource: "sudo", ofType: "deb") else {
+                        let msg = "Could not find sudo"
+                        console.error("[-] \(msg)")
+                        print("[palera1n] \(msg)")
+                        return
+                    }
+                    spawn(command: "/usr/bin/dpkg", args: ["--force-all", "-i", sudo], root: true)
                     console.log("[*] Fixed dpkg, apt, cydia substrate, and preferenceloader")
 
                     spawn(command: "/usr/bin/sbreload", args: [], root: true)
