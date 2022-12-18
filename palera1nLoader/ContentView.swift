@@ -253,8 +253,6 @@ struct ContentView: View {
                     spawn(command: helper, args: ["-i", tar], root: true)
                     DispatchQueue.main.async {
                         spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/rm"], root: true)
-                        spawn(command: "/usr/bin/dpkg", args: ["-i", deb], root: true)
-                        spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/rm"], root: true)
                         let ret = spawn(command: "/usr/bin/sh", args: ["/prep_bootstrap.sh"], root: true)
                         DispatchQueue.main.async {
                             if ret != 0 {
