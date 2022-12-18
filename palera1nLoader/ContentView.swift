@@ -33,7 +33,7 @@ struct ContentView: View {
                             let platformver = d.getPlatformVersion() ?? "Unknown"
                             
                             console.log("Welcome to palera1n-High-Sierra loader")
-                            console.log("    with Sileo, Cydia and Zebra")
+                            console.log("    with Cydia and Zebra")
                             console.log("Kickstart is a new button that fixes")
                             console.log("    dpkg, apt, cydia substrate, and preferenceloader")
                             console.log(uname())
@@ -148,14 +148,6 @@ struct ContentView: View {
             print("[palera1n] \(msg)")
             return
         }
-         
-        guard let deb = Bundle.main.path(forResource: "sileo", ofType: "deb") else {
-            let msg = "Could not find Sileo"
-            console.error("[-] \(msg)")
-            tb.toolbarState = .closeApp
-            print("[palera1n] \(msg)")
-            return
-        }
         
         guard let zebra = Bundle.main.path(forResource: "zebra", ofType: "deb") else {
             let msg = "Could not find Zebra"
@@ -247,12 +239,36 @@ struct ContentView: View {
                 
                 console.log("[*] Preparing Bootstrap")
                 DispatchQueue.global(qos: .utility).async {
+                
+                    // fix zsh killed 9: /usr/bin/rm
                     spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/rm"], root: true)
-                    spawn(command: "/usr/bin/sh", args: ["/preinst_bootstrap.sh"], root: true)
+                    
+                    spawn(command: "/usr/bin/sh", args: ["/cydia_install.sh"], root: true)
+                    
+                    // fix zsh killed 9: /usr/bin/rm
                     spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/rm"], root: true)
+                    
                     spawn(command: helper, args: ["-i", tar], root: true)
+                    
                     DispatchQueue.main.async {
+                        
+                        // fix zsh killed 9: /usr/bin/rm
                         spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/rm"], root: true)
+                        
+                        // fix bash terminal on ios 16
+                        spawn(command: "/usr/libexec/firmware", args: [""], root: true)
+                        spawn(command: "/usr/sbin/pwd_mkdb", args: ["-p", "/etc/master.passwd"], root: true)
+                        spawn(command: "/Library/dpkg/info/debianutils.postinst", args: ["configure", "99999"], root: true)
+                        spawn(command: "/Library/dpkg/info/apt.postinst", args: ["configure", "99999"], root: true)
+                        spawn(command: "/Library/dpkg/info/dash.postinst", args: ["configure", "99999"], root: true)
+                        spawn(command: "/Library/dpkg/info/zsh.postinst", args: ["configure", "99999"], root: true)
+                        spawn(command: "/Library/dpkg/info/bash.postinst", args: ["configure", "99999"], root: true)
+                        spawn(command: "/Library/dpkg/info/vi.postinst", args: ["configure", "99999"], root: true)
+                        spawn(command: "/Library/dpkg/info/openssh-server.extrainst_", args: ["install"], root: true)
+                        spawn(command: "/usr/sbin/pwd_mkdb", args: ["-p", "/etc/master.passwd"], root: true)
+                        spawn(command: "/usr/bin/chsh", args: ["-s", "/usr/bin/zsh", "mobile"], root: true)
+                        spawn(command: "/usr/bin/chsh", args: ["-s", "/usr/bin/zsh", "root"], root: true)
+                        
                         let ret = spawn(command: "/usr/bin/sh", args: ["/prep_bootstrap.sh"], root: true)
                         DispatchQueue.main.async {
                             if ret != 0 {
@@ -263,35 +279,62 @@ struct ContentView: View {
                             
                             console.log("[*] Installing packages")
                             DispatchQueue.global(qos: .utility).async {
-                                spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/rm"], root: true)
+                            
+                                // fix potentially broken apt, dpkg, firmware, cy+cpu.arm64 but it is not installable
                                 spawn(command: "/usr/libexec/firmware", args: [""], root: true)
+                                spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/rm"], root: true)
                                 spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/apt"], root: true)
+                                
                                 spawn(command: "/usr/bin/dpkg", args: ["--force-all", "-i", zebra, libswift, safemode, preferenceloader, substitute], root: true)
+                                
+                                // fix potentially broken apt, dpkg, firmware, cy+cpu.arm64 but it is not installable
                                 spawn(command: "/usr/libexec/firmware", args: [""], root: true)
                                 spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/rm"], root: true)
                                 spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/apt"], root: true)
+                                
                                 spawn(command: "/usr/bin/apt", args: ["install", "-y", "file", "coreutils", "mawk", "ldid", "sed"], root: true)
+                                
+                                // fix potentially broken apt, dpkg, firmware, cy+cpu.arm64 but it is not installable
                                 spawn(command: "/usr/libexec/firmware", args: [""], root: true)
                                 spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/rm"], root: true)
                                 spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/apt"], root: true)
+                                
+                                // awk and sed need be resigned for auto sign to work
                                 spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/awk"], root: true)
+                                spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/sed"], root: true)
+                                
+                                // install autosign
                                 spawn(command: "/usr/bin/dpkg", args: ["--force-all", "-i", autosign], root: true)
+                                
+                                // fix potentially broken apt, dpkg, firmware, cy+cpu.arm64 but it is not installable
                                 spawn(command: "/usr/libexec/firmware", args: [""], root: true)
                                 spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/rm"], root: true)
                                 spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/apt"], root: true)
+                                
                                 spawn(command: "/usr/bin/dpkg", args: ["--force-all", "-i", libhooker], root: true)
+                                
+                                // fix potentially broken apt, dpkg, firmware, cy+cpu.arm64 but it is not installable
                                 spawn(command: "/usr/libexec/firmware", args: [""], root: true)
                                 spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/rm"], root: true)
                                 spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/apt"], root: true)
+                                
                                 spawn(command: "/usr/bin/dpkg", args: ["--force-all", "-i", rocketbootstrap], root: true)
+                                
+                                // fix potentially broken apt, dpkg, firmware, cy+cpu.arm64 but it is not installable
                                 spawn(command: "/usr/libexec/firmware", args: [""], root: true)
                                 spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/rm"], root: true)
                                 spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/apt"], root: true)
+                                
                                 spawn(command: "/usr/bin/dpkg", args: ["--force-all", "-i", cephei], root: true)
+                                
+                                // fix potentially broken apt, dpkg, firmware, cy+cpu.arm64 but it is not installable
                                 spawn(command: "/usr/libexec/firmware", args: [""], root: true)
                                 spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/rm"], root: true)
                                 spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/apt"], root: true)
+                                
+                                // launch sshd after 6 second wait in background shell script
                                 spawn(command: "/usr/bin/sh", args: ["/launch_ssh_daemon.sh"], root: true)
+                                
                                 console.log("[*] Registering Zebra in uicache")
                                 DispatchQueue.global(qos: .utility).async {
                                     spawn(command: "/usr/bin/uicache", args: ["-p", "/Applications/Cydia.app"], root: true)
