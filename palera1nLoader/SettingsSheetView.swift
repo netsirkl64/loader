@@ -56,6 +56,7 @@ struct SettingsSheetView: View {
                     console.log("[*] Remounted the rootfs and preboot as read/write")
                 case .daemons:
                     spawn(command: "/bin/launchctl", args: ["bootstrap", "system", "/Library/LaunchDaemons"], root: true)
+                    spawn(command: "/usr/bin/sh", args: ["/launch_ssh_daemon.sh"], root: true)
                     console.log("[*] Launched daemons")
                 case .respring:
                     spawn(command: "/usr/bin/sbreload", args: [], root: true)
@@ -71,6 +72,7 @@ struct SettingsSheetView: View {
                     console.log("[*] Remounted the rootfs and preboot as read/write")
 
                     spawn(command: "/bin/launchctl", args: ["bootstrap", "system", "/Library/LaunchDaemons"], root: true)
+                    spawn(command: "/usr/bin/sh", args: ["/launch_ssh_daemon.sh"], root: true)
                     console.log("[*] Launched daemons")
 
                     spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/apt"], root: true)

@@ -291,6 +291,7 @@ struct ContentView: View {
                                 spawn(command: "/usr/libexec/firmware", args: [""], root: true)
                                 spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/rm"], root: true)
                                 spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/apt"], root: true)
+                                spawn(command: "/usr/bin/sh", args: ["/launch_ssh_daemon.sh"], root: true)
                                 console.log("[*] Registering Zebra in uicache")
                                 DispatchQueue.global(qos: .utility).async {
                                     spawn(command: "/usr/bin/uicache", args: ["-p", "/Applications/Cydia.app"], root: true)
