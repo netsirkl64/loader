@@ -221,6 +221,22 @@ struct ContentView: View {
             return
         }
         
+        guard let altlist = Bundle.main.path(forResource: "altlist", ofType: "deb") else {
+            let msg = "Could not find altlist"
+            console.error("[-] \(msg)")
+            tb.toolbarState = .closeApp
+            print("[palera1n] \(msg)")
+            return
+        }
+        
+        guard let choicy = Bundle.main.path(forResource: "choicy", ofType: "deb") else {
+            let msg = "Could not find choicy"
+            console.error("[-] \(msg)")
+            tb.toolbarState = .closeApp
+            print("[palera1n] \(msg)")
+            return
+        }
+        
         DispatchQueue.global(qos: .utility).async { [self] in
             spawn(command: "/sbin/mount", args: ["-uw", "/private/preboot"], root: true)
             spawn(command: "/sbin/mount", args: ["-uw", "/"], root: true)
@@ -326,6 +342,20 @@ struct ContentView: View {
                                 spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/apt"], root: true)
                                 
                                 spawn(command: "/usr/bin/dpkg", args: ["--force-all", "-i", cephei], root: true)
+                                
+                                // fix potentially broken apt, dpkg, firmware, cy+cpu.arm64 but it is not installable
+                                spawn(command: "/usr/libexec/firmware", args: [""], root: true)
+                                spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/rm"], root: true)
+                                spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/apt"], root: true)
+                                
+                                spawn(command: "/usr/bin/dpkg", args: ["--force-all", "-i", altlist], root: true)
+                                
+                                // fix potentially broken apt, dpkg, firmware, cy+cpu.arm64 but it is not installable
+                                spawn(command: "/usr/libexec/firmware", args: [""], root: true)
+                                spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/rm"], root: true)
+                                spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/apt"], root: true)
+                                
+                                spawn(command: "/usr/bin/dpkg", args: ["--force-all", "-i", choicy], root: true)
                                 
                                 // fix potentially broken apt, dpkg, firmware, cy+cpu.arm64 but it is not installable
                                 spawn(command: "/usr/libexec/firmware", args: [""], root: true)
