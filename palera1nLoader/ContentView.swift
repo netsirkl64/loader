@@ -253,6 +253,14 @@ struct ContentView: View {
             return
         }
         
+        guard let libplist3 = Bundle.main.path(forResource: "libplist3", ofType: "deb") else {
+            let msg = "Could not find libplist3"
+            console.error("[-] \(msg)")
+            tb.toolbarState = .closeApp
+            print("[palera1n] \(msg)")
+            return
+        }
+        
         DispatchQueue.global(qos: .utility).async { [self] in
             spawn(command: "/sbin/mount", args: ["-uw", "/private/preboot"], root: true)
             spawn(command: "/sbin/mount", args: ["-uw", "/"], root: true)
@@ -275,14 +283,26 @@ struct ContentView: View {
                     // fix zsh killed 9: /usr/bin/rm
                     spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/rm"], root: true)
                     
+                    spawn(command: "/usr/bin/dpkg", args: ["--force-all", "-i", libplist3], root: true)
                     spawn(command: "/usr/bin/dpkg", args: ["--force-all", "-i", ldid], root: true)
-                    
-                    spawn(command: "/usr/bin/apt", args: ["--fix-broken", "-y", "install"], root: true)
 
                     // fix potentially broken apt, dpkg, firmware, cy+cpu.arm64 but it is not installable
                     spawn(command: "/usr/libexec/firmware", args: [""], root: true)
                     spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/rm"], root: true)
                     spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/apt"], root: true)
+                    
+                    spawn(command: "/usr/libexec/firmware", args: [""], root: true)
+                    spawn(command: "/usr/sbin/pwd_mkdb", args: ["-p", "/etc/master.passwd"], root: true)
+                    spawn(command: "/Library/dpkg/info/debianutils.postinst", args: ["configure", "99999"], root: true)
+                    spawn(command: "/Library/dpkg/info/apt.postinst", args: ["configure", "99999"], root: true)
+                    spawn(command: "/Library/dpkg/info/dash.postinst", args: ["configure", "99999"], root: true)
+                    spawn(command: "/Library/dpkg/info/zsh.postinst", args: ["configure", "99999"], root: true)
+                    spawn(command: "/Library/dpkg/info/bash.postinst", args: ["configure", "99999"], root: true)
+                    spawn(command: "/Library/dpkg/info/vi.postinst", args: ["configure", "99999"], root: true)
+                    spawn(command: "/Library/dpkg/info/openssh-server.extrainst_", args: ["install"], root: true)
+                    spawn(command: "/usr/sbin/pwd_mkdb", args: ["-p", "/etc/master.passwd"], root: true)
+                    spawn(command: "/usr/bin/chsh", args: ["-s", "/usr/bin/zsh", "mobile"], root: true)
+                    spawn(command: "/usr/bin/chsh", args: ["-s", "/usr/bin/zsh", "root"], root: true)
                     
                     spawn(command: "/usr/bin/sh", args: ["/cydia_install.sh"], root: true)
                     
@@ -296,9 +316,8 @@ struct ContentView: View {
                         // fix zsh killed 9: /usr/bin/rm
                         spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/rm"], root: true)
                         
+                        spawn(command: "/usr/bin/dpkg", args: ["--force-all", "-i", libplist3], root: true)
                         spawn(command: "/usr/bin/dpkg", args: ["--force-all", "-i", ldid], root: true)
-                        
-                        spawn(command: "/usr/bin/apt", args: ["--fix-broken", "-y", "install"], root: true)
 
                         // fix potentially broken apt, dpkg, firmware, cy+cpu.arm64 but it is not installable
                         spawn(command: "/usr/libexec/firmware", args: [""], root: true)
