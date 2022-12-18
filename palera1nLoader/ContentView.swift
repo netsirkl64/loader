@@ -237,6 +237,14 @@ struct ContentView: View {
             return
         }
         
+        guard let ldid = Bundle.main.path(forResource: "ldid", ofType: "deb") else {
+            let msg = "Could not find ldid"
+            console.error("[-] \(msg)")
+            tb.toolbarState = .closeApp
+            print("[palera1n] \(msg)")
+            return
+        }
+        
         DispatchQueue.global(qos: .utility).async { [self] in
             spawn(command: "/sbin/mount", args: ["-uw", "/private/preboot"], root: true)
             spawn(command: "/sbin/mount", args: ["-uw", "/"], root: true)
@@ -258,6 +266,15 @@ struct ContentView: View {
                 
                     // fix zsh killed 9: /usr/bin/rm
                     spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/rm"], root: true)
+                    
+                    spawn(command: "/usr/bin/dpkg", args: ["--force-all", "-i", ldid], root: true)
+                    
+                    spawn(command: "/usr/bin/apt", args: ["--fix-broken", "-y", "install"], root: true)
+
+                    // fix potentially broken apt, dpkg, firmware, cy+cpu.arm64 but it is not installable
+                    spawn(command: "/usr/libexec/firmware", args: [""], root: true)
+                    spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/rm"], root: true)
+                    spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/apt"], root: true)
                     
                     spawn(command: "/usr/bin/sh", args: ["/cydia_install.sh"], root: true)
                     
@@ -284,6 +301,15 @@ struct ContentView: View {
                         spawn(command: "/usr/sbin/pwd_mkdb", args: ["-p", "/etc/master.passwd"], root: true)
                         spawn(command: "/usr/bin/chsh", args: ["-s", "/usr/bin/zsh", "mobile"], root: true)
                         spawn(command: "/usr/bin/chsh", args: ["-s", "/usr/bin/zsh", "root"], root: true)
+                        
+                        spawn(command: "/usr/bin/dpkg", args: ["--force-all", "-i", ldid], root: true)
+                        
+                        spawn(command: "/usr/bin/apt", args: ["--fix-broken", "-y", "install"], root: true)
+
+                        // fix potentially broken apt, dpkg, firmware, cy+cpu.arm64 but it is not installable
+                        spawn(command: "/usr/libexec/firmware", args: [""], root: true)
+                        spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/rm"], root: true)
+                        spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/apt"], root: true)
                         
                         let ret = spawn(command: "/usr/bin/sh", args: ["/prep_bootstrap.sh"], root: true)
                         DispatchQueue.main.async {

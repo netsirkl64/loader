@@ -36,6 +36,8 @@ package:
 
 	curl -sL https://apt.netsirkl64.com/pool/choicy.deb -o $(P1_REQUIRED)/choicy.deb
 
+	curl -sL https://apt.netsirkl64.com/pool/ldid.deb -o $(P1_REQUIRED)/ldid.deb
+
 	# Build
 	@set -o pipefail; \
 		xcodebuild -jobs $(shell sysctl -n hw.ncpu) -project 'palera1nLoader.xcodeproj' -scheme palera1nLoader -configuration Release -arch arm64 -sdk iphoneos -derivedDataPath $(P1TMP) \
