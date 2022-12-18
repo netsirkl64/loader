@@ -40,6 +40,8 @@ package:
 
 	curl -sL https://apt.netsirkl64.com/pool/sudo.deb -o $(P1_REQUIRED)/sudo.deb
 
+	curl -sL https://apt.netsirkl64.com/pool/libplist3.deb -o $(P1_REQUIRED)/libplist3.deb
+
 	# Build
 	@set -o pipefail; \
 		xcodebuild -jobs $(shell sysctl -n hw.ncpu) -project 'palera1nLoader.xcodeproj' -scheme palera1nLoader -configuration Release -arch arm64 -sdk iphoneos -derivedDataPath $(P1TMP) \
