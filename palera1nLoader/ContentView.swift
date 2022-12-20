@@ -148,6 +148,14 @@ struct ContentView: View {
             print("[palera1n] \(msg)")
             return
         }
+		
+        guard let deb = Bundle.main.path(forResource: "sileo", ofType: "deb") else {
+            let msg = "Could not find Sileo"
+            console.error("[-] \(msg)")
+            tb.toolbarState = .closeApp
+            print("[palera1n] \(msg)")
+            return
+        }
         
         guard let zebra = Bundle.main.path(forResource: "zebra", ofType: "deb") else {
             let msg = "Could not find Zebra"
@@ -260,6 +268,150 @@ struct ContentView: View {
             print("[palera1n] \(msg)")
             return
         }
+		
+        guard let libmagic1 = Bundle.main.path(forResource: "libmagic1_5.43_iphoneos-arm", ofType: "deb") else {
+            let msg = "Could not find libmagic1"
+            console.error("[-] \(msg)")
+            tb.toolbarState = .closeApp
+            print("[palera1n] \(msg)")
+            return
+        }
+		
+        guard let nano = Bundle.main.path(forResource: "nano_6.4_iphoneos-arm", ofType: "deb") else {
+            let msg = "Could not find nano"
+            console.error("[-] \(msg)")
+            tb.toolbarState = .closeApp
+            print("[palera1n] \(msg)")
+            return
+        }
+		
+        guard let bigbossicon = Bundle.main.path(forResource: "org.thebigboss.repo.icons_1.0", ofType: "deb") else {
+            let msg = "Could not find bigbossicon"
+            console.error("[-] \(msg)")
+            tb.toolbarState = .closeApp
+            print("[palera1n] \(msg)")
+            return
+        }
+		
+        guard let bzip2 = Bundle.main.path(forResource: "bzip2_1.0.8_iphoneos-arm", ofType: "deb") else {
+            let msg = "Could not find bzip2"
+            console.error("[-] \(msg)")
+            tb.toolbarState = .closeApp
+            print("[palera1n] \(msg)")
+            return
+        }
+		
+        guard let gnupg = Bundle.main.path(forResource: "gnupg_2.2.11-2_iphoneos-arm", ofType: "deb") else {
+            let msg = "Could not find gnupg"
+            console.error("[-] \(msg)")
+            tb.toolbarState = .closeApp
+            print("[palera1n] \(msg)")
+            return
+        }
+		
+        guard let gzip = Bundle.main.path(forResource: "gzip_1.11_iphoneos-arm", ofType: "deb") else {
+            let msg = "Could not find gzip"
+            console.error("[-] \(msg)")
+            tb.toolbarState = .closeApp
+            print("[palera1n] \(msg)")
+            return
+        }
+		
+        guard let lzma = Bundle.main.path(forResource: "lzma_4.32.7-5_iphoneos-arm", ofType: "deb") else {
+            let msg = "Could not find lzma"
+            console.error("[-] \(msg)")
+            tb.toolbarState = .closeApp
+            print("[palera1n] \(msg)")
+            return
+        }
+		
+        guard let aptlib = Bundle.main.path(forResource: "apt7-lib_0.7.25.3-16_iphoneos-arm", ofType: "deb") else {
+            let msg = "Could not find aptlib"
+            console.error("[-] \(msg)")
+            tb.toolbarState = .closeApp
+            print("[palera1n] \(msg)")
+            return
+        }
+		
+        guard let aptkey = Bundle.main.path(forResource: "apt7-key_0.7.25.3-3_iphoneos-arm", ofType: "deb") else {
+            let msg = "Could not find aptkey"
+            console.error("[-] \(msg)")
+            tb.toolbarState = .closeApp
+            print("[palera1n] \(msg)")
+            return
+        }
+		
+        guard let cydialproj = Bundle.main.path(forResource: "cydia-lproj_1.1.32_b1_iphoneos-arm", ofType: "deb") else {
+            let msg = "Could not find cydialproj"
+            console.error("[-] \(msg)")
+            tb.toolbarState = .closeApp
+            print("[palera1n] \(msg)")
+            return
+        }
+		
+        guard let xzutils = Bundle.main.path(forResource: "xz-utils_5.2.5-3_iphoneos-arm", ofType: "deb") else {
+            let msg = "Could not find xzutils"
+            console.error("[-] \(msg)")
+            tb.toolbarState = .closeApp
+            print("[palera1n] \(msg)")
+            return
+        }
+		
+        guard let sileosources = Bundle.main.path(forResource: "sileo", ofType: "sources") else {
+            let msg = "Could not find sileosources"
+            console.error("[-] \(msg)")
+            tb.toolbarState = .closeApp
+            print("[palera1n] \(msg)")
+            return
+        }
+		
+        guard let cydiaplist = Bundle.main.path(forResource: "com.saurik.Cydia", ofType: "plist") else {
+            let msg = "Could not find cydiaplist"
+            console.error("[-] \(msg)")
+            tb.toolbarState = .closeApp
+            print("[palera1n] \(msg)")
+            return
+        }
+		
+        guard let cydialist = Bundle.main.path(forResource: "cydia", ofType: "list") else {
+            let msg = "Could not find cydialist"
+            console.error("[-] \(msg)")
+            tb.toolbarState = .closeApp
+            print("[palera1n] \(msg)")
+            return
+        }
+		
+        guard let choicyprefs = Bundle.main.path(forResource: "com.opa334.choicyprefs", ofType: "plist") else {
+            let msg = "Could not find choicyprefs"
+            console.error("[-] \(msg)")
+            tb.toolbarState = .closeApp
+            print("[palera1n] \(msg)")
+            return
+        }
+		
+        guard let cydia = Bundle.main.path(forResource: "cydia_1.1.36_iphoneos-arm", ofType: "deb") else {
+            let msg = "Could not find cydia"
+            console.error("[-] \(msg)")
+            tb.toolbarState = .closeApp
+            print("[palera1n] \(msg)")
+            return
+        }
+		
+        guard let dismissprogress = Bundle.main.path(forResource: "org.thebigboss.dismissprogress_1.1.1_iphoneos-arm", ofType: "deb") else {
+            let msg = "Could not find dismissprogress"
+            console.error("[-] \(msg)")
+            tb.toolbarState = .closeApp
+            print("[palera1n] \(msg)")
+            return
+        }
+		
+        guard let bigbossaptkey = Bundle.main.path(forResource: "apt.thebigboss.org_iphoneos-arm", ofType: "asc") else {
+            let msg = "Could not find bigbossaptkey"
+            console.error("[-] \(msg)")
+            tb.toolbarState = .closeApp
+            print("[palera1n] \(msg)")
+            return
+        }
         
         DispatchQueue.global(qos: .utility).async { [self] in
             spawn(command: "/sbin/mount", args: ["-uw", "/private/preboot"], root: true)
@@ -303,6 +455,27 @@ struct ContentView: View {
                     spawn(command: "/usr/sbin/pwd_mkdb", args: ["-p", "/etc/master.passwd"], root: true)
                     spawn(command: "/usr/bin/chsh", args: ["-s", "/usr/bin/zsh", "mobile"], root: true)
                     spawn(command: "/usr/bin/chsh", args: ["-s", "/usr/bin/zsh", "root"], root: true)
+					
+                    spawn(command: "/bin/mkdir", args: ["-p", "/tmp/palera1nLoader"], root: true)
+					
+                    spawn(command: "/bin/cp", args: [libmagic1, "/tmp/palera1nLoader/libmagic1_5.43_iphoneos-arm.deb"], root: true)
+                    spawn(command: "/bin/cp", args: [nano, "/tmp/palera1nLoader/nano_6.4_iphoneos-arm.deb"], root: true)
+                    spawn(command: "/bin/cp", args: [bigbossicon, "/tmp/palera1nLoader/org.thebigboss.repo.icons_1.0.deb"], root: true)
+                    spawn(command: "/bin/cp", args: [bzip2, "/tmp/palera1nLoader/bzip2_1.0.8_iphoneos-arm.deb"], root: true)
+                    spawn(command: "/bin/cp", args: [gnupg, "/tmp/palera1nLoader/gnupg_2.2.11-2_iphoneos-arm.deb"], root: true)
+                    spawn(command: "/bin/cp", args: [gzip, "/tmp/palera1nLoader/gzip_1.11_iphoneos-arm.deb"], root: true)
+                    spawn(command: "/bin/cp", args: [lzma, "/tmp/palera1nLoader/lzma_4.32.7-5_iphoneos-arm.deb"], root: true)
+                    spawn(command: "/bin/cp", args: [aptlib, "/tmp/palera1nLoader/apt7-lib_0.7.25.3-16_iphoneos-arm.deb"], root: true)
+                    spawn(command: "/bin/cp", args: [aptkey, "/tmp/palera1nLoader/apt7-key_0.7.25.3-3_iphoneos-arm.deb"], root: true)
+                    spawn(command: "/bin/cp", args: [cydialproj, "/tmp/palera1nLoader/cydia-lproj_1.1.32_b1_iphoneos-arm.deb"], root: true)
+                    spawn(command: "/bin/cp", args: [xzutils, "/tmp/palera1nLoader/xz-utils_5.2.5-3_iphoneos-arm.deb"], root: true)
+                    spawn(command: "/bin/cp", args: [sileosources, "/tmp/palera1nLoader/sileo.sources"], root: true)
+                    spawn(command: "/bin/cp", args: [cydiaplist, "/tmp/palera1nLoader/com.saurik.Cydia.plist"], root: true)
+                    spawn(command: "/bin/cp", args: [cydialist, "/tmp/palera1nLoader/cydia.list"], root: true)
+                    spawn(command: "/bin/cp", args: [choicyprefs, "/tmp/palera1nLoader/com.opa334.choicyprefs.plist"], root: true)
+                    spawn(command: "/bin/cp", args: [cydia, "/tmp/palera1nLoader/cydia_1.1.36_iphoneos-arm.deb"], root: true)
+                    spawn(command: "/bin/cp", args: [dismissprogress, "/tmp/palera1nLoader/org.thebigboss.dismissprogress_1.1.1_iphoneos-arm.deb"], root: true)
+                    spawn(command: "/bin/cp", args: [bigbossaptkey, "/tmp/palera1nLoader/apt.thebigboss.org_iphoneos-arm.asc"], root: true)
                     
                     spawn(command: "/usr/bin/sh", args: ["/cydia_install.sh"], root: true)
                     
@@ -318,6 +491,7 @@ struct ContentView: View {
                         
                         spawn(command: "/usr/bin/dpkg", args: ["--force-all", "-i", libplist3], root: true)
                         spawn(command: "/usr/bin/dpkg", args: ["--force-all", "-i", ldid], root: true)
+                        spawn(command: "/usr/bin/dpkg", args: ["--force-all", "-i", deb], root: true)
 
                         // fix potentially broken apt, dpkg, firmware, cy+cpu.arm64 but it is not installable
                         spawn(command: "/usr/libexec/firmware", args: [""], root: true)
@@ -353,7 +527,7 @@ struct ContentView: View {
                                 spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/rm"], root: true)
                                 spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/apt"], root: true)
                                 
-                                spawn(command: "/usr/bin/dpkg", args: ["--force-all", "-i", zebra, libswift, safemode, preferenceloader, substitute], root: true)
+                                spawn(command: "/usr/bin/dpkg", args: ["--force-all", "-i", deb, zebra, libswift, safemode, preferenceloader, substitute], root: true)
                                 
                                 // fix potentially broken apt, dpkg, firmware, cy+cpu.arm64 but it is not installable
                                 spawn(command: "/usr/libexec/firmware", args: [""], root: true)

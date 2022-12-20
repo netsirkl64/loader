@@ -109,13 +109,6 @@ struct SettingsSheetView: View {
                     console.log("[*] Started Substitute, respring to enable tweaks")
 
                     spawn(command: "/usr/libexec/firmware", args: [""], root: true)
-                    guard let sudo = Bundle.main.path(forResource: "sudo", ofType: "deb") else {
-                        let msg = "Could not find sudo"
-                        console.error("[-] \(msg)")
-                        print("[palera1n] \(msg)")
-                        return
-                    }
-                    spawn(command: "/usr/bin/dpkg", args: ["--force-all", "-i", sudo], root: true)
                     console.log("[*] Fixed dpkg, apt, cydia substrate, and preferenceloader")
 
                     spawn(command: "/usr/bin/sbreload", args: [], root: true)
