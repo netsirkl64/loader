@@ -49,7 +49,8 @@ struct SettingsSheetView: View {
         Button {
             switch tool.action {
                 case .uicache:
-                    self.runUiCache()
+                    spawn(command: "/usr/bin/uicache", args: ["-a"], root: true)
+                    console.log("[*] Registered apps in /Applications")
                 case .mntrw:
                     spawn(command: "/sbin/mount", args: ["-uw", "/private/preboot"], root: true)
                     spawn(command: "/sbin/mount", args: ["-uw", "/" ], root: true)
@@ -77,7 +78,8 @@ struct SettingsSheetView: View {
                     spawn(command: "/etc/rc.d/substitute-launcher", args: [], root: true)
                     console.log("[*] Started Substitute, respring to enable tweaks")
                 case .all:
-                    self.runUiCache()
+                    spawn(command: "/usr/bin/uicache", args: ["-a"], root: true)
+                    console.log("[*] Registered apps in /Applications")
 
                     spawn(command: "/sbin/mount", args: ["-uw", "/private/preboot"], root: true)
                     spawn(command: "/sbin/mount", args: ["-uw", "/" ], root: true)
@@ -136,28 +138,6 @@ struct SettingsSheetView: View {
             .padding(.vertical, 4)
         }
         .buttonStyle(.plain)
-    }
-
-    private func runUiCache() {
-        DispatchQueue.global(qos: .utility).async {
-            // for every .app file in /Applications, run uicache -p
-            let fm = FileManager.default
-            let apps = try? fm.contentsOfDirectory(atPath: "/Applications")
-            let excludeApps: [String] = ["Xcode Previews.app", "Sidecar.app"]
-            for app in apps ?? [] {
-                if app.hasSuffix(".app") && !excludeApps.contains(app) {
-                    let ret = spawn(command: "/usr/bin/uicache", args: ["-p", "/Applications/\(app)"], root: true)
-                    DispatchQueue.main.async {
-                        if ret != 0 {
-                            console.error("[-] Failed to uicache \(app). Status: \(ret)")
-                            return
-                        }
-                        console.log("[*] Registered apps in /Applications")
-                    }
-                }
-            }
-
-        }
     }
 }
 
