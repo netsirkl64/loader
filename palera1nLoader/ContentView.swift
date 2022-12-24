@@ -33,7 +33,7 @@ struct ContentView: View {
                             let platformver = d.getPlatformVersion() ?? "Unknown"
                             
                             console.log("Welcome to palera1n-High-Sierra loader")
-                            console.log("    with Cydia and Zebra")
+                            console.log("    with Sileo, Cydia and Zebra")
                             console.log("Kickstart is a new button that fixes")
                             console.log("    dpkg, apt, cydia substrate, and preferenceloader")
                             console.log(uname())
