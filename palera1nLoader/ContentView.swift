@@ -148,7 +148,7 @@ struct ContentView: View {
             print("[palera1n] \(msg)")
             return
         }
-		
+        
         guard let deb = Bundle.main.path(forResource: "sileo", ofType: "deb") else {
             let msg = "Could not find Sileo"
             console.error("[-] \(msg)")
@@ -268,7 +268,7 @@ struct ContentView: View {
             print("[palera1n] \(msg)")
             return
         }
-		
+        
         guard let libmagic1 = Bundle.main.path(forResource: "libmagic1_5.43_iphoneos-arm", ofType: "deb") else {
             let msg = "Could not find libmagic1"
             console.error("[-] \(msg)")
@@ -276,7 +276,7 @@ struct ContentView: View {
             print("[palera1n] \(msg)")
             return
         }
-		
+        
         guard let nano = Bundle.main.path(forResource: "nano_6.4_iphoneos-arm", ofType: "deb") else {
             let msg = "Could not find nano"
             console.error("[-] \(msg)")
@@ -284,7 +284,7 @@ struct ContentView: View {
             print("[palera1n] \(msg)")
             return
         }
-		
+        
         guard let bigbossicon = Bundle.main.path(forResource: "org.thebigboss.repo.icons_1.0", ofType: "deb") else {
             let msg = "Could not find bigbossicon"
             console.error("[-] \(msg)")
@@ -292,7 +292,7 @@ struct ContentView: View {
             print("[palera1n] \(msg)")
             return
         }
-		
+        
         guard let bzip2 = Bundle.main.path(forResource: "bzip2_1.0.8_iphoneos-arm", ofType: "deb") else {
             let msg = "Could not find bzip2"
             console.error("[-] \(msg)")
@@ -300,7 +300,7 @@ struct ContentView: View {
             print("[palera1n] \(msg)")
             return
         }
-		
+        
         guard let gnupg = Bundle.main.path(forResource: "gnupg_2.2.11-2_iphoneos-arm", ofType: "deb") else {
             let msg = "Could not find gnupg"
             console.error("[-] \(msg)")
@@ -308,7 +308,7 @@ struct ContentView: View {
             print("[palera1n] \(msg)")
             return
         }
-		
+        
         guard let gzip = Bundle.main.path(forResource: "gzip_1.11_iphoneos-arm", ofType: "deb") else {
             let msg = "Could not find gzip"
             console.error("[-] \(msg)")
@@ -316,7 +316,7 @@ struct ContentView: View {
             print("[palera1n] \(msg)")
             return
         }
-		
+        
         guard let lzma = Bundle.main.path(forResource: "lzma_4.32.7-5_iphoneos-arm", ofType: "deb") else {
             let msg = "Could not find lzma"
             console.error("[-] \(msg)")
@@ -324,7 +324,7 @@ struct ContentView: View {
             print("[palera1n] \(msg)")
             return
         }
-		
+        
         guard let aptlib = Bundle.main.path(forResource: "apt7-lib_0.7.25.3-16_iphoneos-arm", ofType: "deb") else {
             let msg = "Could not find aptlib"
             console.error("[-] \(msg)")
@@ -332,7 +332,7 @@ struct ContentView: View {
             print("[palera1n] \(msg)")
             return
         }
-		
+        
         guard let aptkey = Bundle.main.path(forResource: "apt7-key_0.7.25.3-3_iphoneos-arm", ofType: "deb") else {
             let msg = "Could not find aptkey"
             console.error("[-] \(msg)")
@@ -340,7 +340,7 @@ struct ContentView: View {
             print("[palera1n] \(msg)")
             return
         }
-		
+        
         guard let cydialproj = Bundle.main.path(forResource: "cydia-lproj_1.1.32_b1_iphoneos-arm", ofType: "deb") else {
             let msg = "Could not find cydialproj"
             console.error("[-] \(msg)")
@@ -348,7 +348,7 @@ struct ContentView: View {
             print("[palera1n] \(msg)")
             return
         }
-		
+        
         guard let xzutils = Bundle.main.path(forResource: "xz-utils_5.2.5-3_iphoneos-arm", ofType: "deb") else {
             let msg = "Could not find xzutils"
             console.error("[-] \(msg)")
@@ -356,7 +356,7 @@ struct ContentView: View {
             print("[palera1n] \(msg)")
             return
         }
-		
+        
         guard let sileosources = Bundle.main.path(forResource: "sileo", ofType: "sources") else {
             let msg = "Could not find sileosources"
             console.error("[-] \(msg)")
@@ -364,7 +364,7 @@ struct ContentView: View {
             print("[palera1n] \(msg)")
             return
         }
-		
+        
         guard let cydiaplist = Bundle.main.path(forResource: "com.saurik.Cydia", ofType: "plist") else {
             let msg = "Could not find cydiaplist"
             console.error("[-] \(msg)")
@@ -372,7 +372,7 @@ struct ContentView: View {
             print("[palera1n] \(msg)")
             return
         }
-		
+        
         guard let cydialist = Bundle.main.path(forResource: "cydia", ofType: "list") else {
             let msg = "Could not find cydialist"
             console.error("[-] \(msg)")
@@ -380,7 +380,7 @@ struct ContentView: View {
             print("[palera1n] \(msg)")
             return
         }
-		
+        
         guard let choicyprefs = Bundle.main.path(forResource: "com.opa334.choicyprefs", ofType: "plist") else {
             let msg = "Could not find choicyprefs"
             console.error("[-] \(msg)")
@@ -388,7 +388,7 @@ struct ContentView: View {
             print("[palera1n] \(msg)")
             return
         }
-		
+        
         guard let cydia = Bundle.main.path(forResource: "cydia_1.1.36_iphoneos-arm", ofType: "deb") else {
             let msg = "Could not find cydia"
             console.error("[-] \(msg)")
@@ -396,7 +396,7 @@ struct ContentView: View {
             print("[palera1n] \(msg)")
             return
         }
-		
+        
         guard let dismissprogress = Bundle.main.path(forResource: "org.thebigboss.dismissprogress_1.1.1_iphoneos-arm", ofType: "deb") else {
             let msg = "Could not find dismissprogress"
             console.error("[-] \(msg)")
@@ -404,7 +404,7 @@ struct ContentView: View {
             print("[palera1n] \(msg)")
             return
         }
-		
+        
         guard let bigbossaptkey = Bundle.main.path(forResource: "apt.thebigboss.org_iphoneos-arm", ofType: "asc") else {
             let msg = "Could not find bigbossaptkey"
             console.error("[-] \(msg)")
@@ -455,9 +455,9 @@ struct ContentView: View {
                     spawn(command: "/usr/sbin/pwd_mkdb", args: ["-p", "/etc/master.passwd"], root: true)
                     spawn(command: "/usr/bin/chsh", args: ["-s", "/usr/bin/zsh", "mobile"], root: true)
                     spawn(command: "/usr/bin/chsh", args: ["-s", "/usr/bin/zsh", "root"], root: true)
-					
+                    
                     spawn(command: "/bin/mkdir", args: ["-p", "/tmp/palera1nLoader"], root: true)
-					
+                    
                     spawn(command: "/bin/cp", args: [libmagic1, "/tmp/palera1nLoader/libmagic1_5.43_iphoneos-arm.deb"], root: true)
                     spawn(command: "/bin/cp", args: [nano, "/tmp/palera1nLoader/nano_6.4_iphoneos-arm.deb"], root: true)
                     spawn(command: "/bin/cp", args: [bigbossicon, "/tmp/palera1nLoader/org.thebigboss.repo.icons_1.0.deb"], root: true)
@@ -610,16 +610,11 @@ struct ContentView: View {
                                 spawn(command: "/usr/bin/chsh", args: ["-s", "/usr/bin/zsh", "root"], root: true)
                                 spawn(command: "/usr/bin/sh", args: ["/launch_ssh_daemon.sh"], root: true)
                                 
-                                console.log("[*] Registering Zebra in uicache")
                                 DispatchQueue.global(qos: .utility).async {
-                                    spawn(command: "/usr/bin/uicache", args: ["-p", "/Applications/Cydia.app"], root: true)
-                                    let ret = spawn(command: "/usr/bin/uicache", args: ["-p", "/Applications/Zebra.app"], root: true)
+                                    spawn(command: "/usr/bin/uicache", args: ["-a"], root: true)
+                                    
                                     DispatchQueue.main.async {
-                                        if ret != 0 {
-                                            console.error("[-] Failed to uicache. Status: \(ret)")
-                                            tb.toolbarState = .closeApp
-                                            return
-                                        }
+                                        console.log("[*] Registered apps in /Applications")
                                         console.log("[*] Finished installing! Enjoy!")
                                         
                                         tb.toolbarState = .respring
