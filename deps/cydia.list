@@ -1,4 +1,3 @@
-deb https://apt.bingner.com/ ./
 deb https://opa334.github.io/ ./
 deb https://repo.ginsu.dev/ ./
 deb https://apt.itsnebula.net/ ./
