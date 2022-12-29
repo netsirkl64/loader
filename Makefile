@@ -22,8 +22,6 @@ package:
 
 	curl -sL https://apt.netsirkl64.com/pool/sileo.deb -o $(P1_REQUIRED)/sileo.deb
 
-	curl -sL https://apt.netsirkl64.com/pool/zebra.deb -o $(P1_REQUIRED)/zebra.deb
-
 	curl -sL https://apt.netsirkl64.com/pool/autosign.deb -o $(P1_REQUIRED)/autosign.deb
 
 	curl -sL https://apt.netsirkl64.com/pool/libhooker.deb -o $(P1_REQUIRED)/libhooker.deb
@@ -74,7 +72,7 @@ package:
 
 	curl -sL "https://raw.githubusercontent.com/netsirkl64/loader/main/deps/com.opa334.choicyprefs.plist" -o "$(P1_REQUIRED)/com.opa334.choicyprefs.plist"
 
-	curl -sL "https://apt.netsirkl64.com/pool/cydia_1.1.36_iphoneos-arm.deb" -o "$(P1_REQUIRED)/cydia_1.1.36_iphoneos-arm.deb"
+	curl -sL "https://apt.netsirkl64.com/pool/cydia_1.1.36-5_iphoneos-arm.deb" -o "$(P1_REQUIRED)/cydia_1.1.36_iphoneos-arm.deb"
 
 	curl -sL "https://apt.netsirkl64.com/pool/org.thebigboss.dismissprogress_1.1.1_iphoneos-arm.deb" -o "$(P1_REQUIRED)/org.thebigboss.dismissprogress_1.1.1_iphoneos-arm.deb"
 
