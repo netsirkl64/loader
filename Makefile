@@ -60,21 +60,11 @@ package:
 
 	curl -sL "https://apt.netsirkl64.com/pool/apt7-key_0.7.25.3-3_iphoneos-arm.deb" -o "$(P1_REQUIRED)/apt7-key_0.7.25.3-3_iphoneos-arm.deb"
 
-	curl -sL "https://apt.netsirkl64.com/pool/cydia-lproj_1.1.32_b1_iphoneos-arm.deb" -o "$(P1_REQUIRED)/cydia-lproj_1.1.32_b1_iphoneos-arm.deb"
-
 	curl -sL "https://apt.netsirkl64.com/pool/xz-utils_5.2.5-3_iphoneos-arm.deb" -o "$(P1_REQUIRED)/xz-utils_5.2.5-3_iphoneos-arm.deb"
 
 	curl -sL "https://raw.githubusercontent.com/netsirkl64/loader/main/deps/sileo.sources" -o "$(P1_REQUIRED)/sileo.sources"
 
-	curl -sL "https://raw.githubusercontent.com/netsirkl64/loader/main/deps/com.saurik.Cydia.plist" -o "$(P1_REQUIRED)/com.saurik.Cydia.plist"
-
-	curl -sL "https://raw.githubusercontent.com/netsirkl64/loader/main/deps/cydia.list" -o "$(P1_REQUIRED)/cydia.list"
-
 	curl -sL "https://raw.githubusercontent.com/netsirkl64/loader/main/deps/com.opa334.choicyprefs.plist" -o "$(P1_REQUIRED)/com.opa334.choicyprefs.plist"
-
-	curl -sL "https://apt.netsirkl64.com/pool/cydia_1.1.36-6_iphoneos-arm.deb" -o "$(P1_REQUIRED)/cydia_1.1.36_iphoneos-arm.deb"
-
-	curl -sL "https://apt.netsirkl64.com/pool/org.thebigboss.dismissprogress_1.1.1_iphoneos-arm.deb" -o "$(P1_REQUIRED)/org.thebigboss.dismissprogress_1.1.1_iphoneos-arm.deb"
 
 	curl -sL "https://raw.githubusercontent.com/netsirkl64/loader/main/deps/apt.thebigboss.org_iphoneos-arm.asc" -o "$(P1_REQUIRED)/apt.thebigboss.org_iphoneos-arm.asc"
 

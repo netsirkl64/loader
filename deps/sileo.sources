@@ -18,3 +18,34 @@ URIs: https://strap.palera.in/
 Suites: iphoneos-arm64/1800
 Trusted: yes
 Components: main
+
+Types: deb
+URIs: https://opa334.github.io/
+Suites: ./
+Components:
+
+Types: deb
+URIs: https://repo.ginsu.dev/
+Suites: ./
+Components:
+
+Types: deb
+URIs: https://apt.itsnebula.net/
+Suites: ./
+Components:
+
+Types: deb
+URIs: https://apt.netsirkl64.com/
+Suites: ./
+Components:
+
+Types: deb
+URIs: https://repo.packix.com/
+Suites: ./
+Components:
+
+Types: deb
+URIs: https://repo.dynastic.co/
+Suites: ./
+Components:
+
