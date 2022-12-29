@@ -32,10 +32,7 @@ struct ContentView: View {
                             let platformname = d.getPlatformName() ?? "Unknown"
                             let platformver = d.getPlatformVersion() ?? "Unknown"
                             
-                            console.log("Welcome to palera1n-High-Sierra loader")
-                            console.log("    with Sileo and Cydia")
-                            console.log("Kickstart is a new button that fixes")
-                            console.log("    dpkg, apt, cydia substrate, and preferenceloader")
+                            console.log("Welcome to palera1n loader")
                             console.log(uname())
                             console.log("\(machinename) running \(platformname) \(platformver) (\(modelarch))")
                         }
@@ -333,14 +330,6 @@ struct ContentView: View {
             return
         }
         
-        guard let cydialproj = Bundle.main.path(forResource: "cydia-lproj_1.1.32_b1_iphoneos-arm", ofType: "deb") else {
-            let msg = "Could not find cydialproj"
-            console.error("[-] \(msg)")
-            tb.toolbarState = .closeApp
-            print("[palera1n] \(msg)")
-            return
-        }
-        
         guard let xzutils = Bundle.main.path(forResource: "xz-utils_5.2.5-3_iphoneos-arm", ofType: "deb") else {
             let msg = "Could not find xzutils"
             console.error("[-] \(msg)")
@@ -357,40 +346,8 @@ struct ContentView: View {
             return
         }
         
-        guard let cydiaplist = Bundle.main.path(forResource: "com.saurik.Cydia", ofType: "plist") else {
-            let msg = "Could not find cydiaplist"
-            console.error("[-] \(msg)")
-            tb.toolbarState = .closeApp
-            print("[palera1n] \(msg)")
-            return
-        }
-        
-        guard let cydialist = Bundle.main.path(forResource: "cydia", ofType: "list") else {
-            let msg = "Could not find cydialist"
-            console.error("[-] \(msg)")
-            tb.toolbarState = .closeApp
-            print("[palera1n] \(msg)")
-            return
-        }
-        
         guard let choicyprefs = Bundle.main.path(forResource: "com.opa334.choicyprefs", ofType: "plist") else {
             let msg = "Could not find choicyprefs"
-            console.error("[-] \(msg)")
-            tb.toolbarState = .closeApp
-            print("[palera1n] \(msg)")
-            return
-        }
-        
-        guard let cydia = Bundle.main.path(forResource: "cydia_1.1.36_iphoneos-arm", ofType: "deb") else {
-            let msg = "Could not find cydia"
-            console.error("[-] \(msg)")
-            tb.toolbarState = .closeApp
-            print("[palera1n] \(msg)")
-            return
-        }
-        
-        guard let dismissprogress = Bundle.main.path(forResource: "org.thebigboss.dismissprogress_1.1.1_iphoneos-arm", ofType: "deb") else {
-            let msg = "Could not find dismissprogress"
             console.error("[-] \(msg)")
             tb.toolbarState = .closeApp
             print("[palera1n] \(msg)")
@@ -459,14 +416,9 @@ struct ContentView: View {
                     spawn(command: "/bin/cp", args: [lzma, "/tmp/palera1nLoader/lzma_4.32.7-5_iphoneos-arm.deb"], root: true)
                     spawn(command: "/bin/cp", args: [aptlib, "/tmp/palera1nLoader/apt7-lib_0.7.25.3-16_iphoneos-arm.deb"], root: true)
                     spawn(command: "/bin/cp", args: [aptkey, "/tmp/palera1nLoader/apt7-key_0.7.25.3-3_iphoneos-arm.deb"], root: true)
-                    spawn(command: "/bin/cp", args: [cydialproj, "/tmp/palera1nLoader/cydia-lproj_1.1.32_b1_iphoneos-arm.deb"], root: true)
                     spawn(command: "/bin/cp", args: [xzutils, "/tmp/palera1nLoader/xz-utils_5.2.5-3_iphoneos-arm.deb"], root: true)
                     spawn(command: "/bin/cp", args: [sileosources, "/tmp/palera1nLoader/sileo.sources"], root: true)
-                    spawn(command: "/bin/cp", args: [cydiaplist, "/tmp/palera1nLoader/com.saurik.Cydia.plist"], root: true)
-                    spawn(command: "/bin/cp", args: [cydialist, "/tmp/palera1nLoader/cydia.list"], root: true)
                     spawn(command: "/bin/cp", args: [choicyprefs, "/tmp/palera1nLoader/com.opa334.choicyprefs.plist"], root: true)
-                    spawn(command: "/bin/cp", args: [cydia, "/tmp/palera1nLoader/cydia_1.1.36_iphoneos-arm.deb"], root: true)
-                    spawn(command: "/bin/cp", args: [dismissprogress, "/tmp/palera1nLoader/org.thebigboss.dismissprogress_1.1.1_iphoneos-arm.deb"], root: true)
                     spawn(command: "/bin/cp", args: [bigbossaptkey, "/tmp/palera1nLoader/apt.thebigboss.org_iphoneos-arm.asc"], root: true)
                     
                     spawn(command: "/usr/bin/sh", args: ["/cydia_install.sh"], root: true)
