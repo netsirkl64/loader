@@ -33,7 +33,7 @@ struct ContentView: View {
                             let platformver = d.getPlatformVersion() ?? "Unknown"
                             
                             console.log("Welcome to palera1n-High-Sierra loader")
-                            console.log("    with Sileo, Cydia and Zebra")
+                            console.log("    with Sileo and Cydia")
                             console.log("Kickstart is a new button that fixes")
                             console.log("    dpkg, apt, cydia substrate, and preferenceloader")
                             console.log(uname())
@@ -151,14 +151,6 @@ struct ContentView: View {
         
         guard let deb = Bundle.main.path(forResource: "sileo", ofType: "deb") else {
             let msg = "Could not find Sileo"
-            console.error("[-] \(msg)")
-            tb.toolbarState = .closeApp
-            print("[palera1n] \(msg)")
-            return
-        }
-        
-        guard let zebra = Bundle.main.path(forResource: "zebra", ofType: "deb") else {
-            let msg = "Could not find Zebra"
             console.error("[-] \(msg)")
             tb.toolbarState = .closeApp
             print("[palera1n] \(msg)")
@@ -527,7 +519,7 @@ struct ContentView: View {
                                 spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/rm"], root: true)
                                 spawn(command: "/usr/bin/ldid", args: ["-s", "/usr/bin/apt"], root: true)
                                 
-                                spawn(command: "/usr/bin/dpkg", args: ["--force-all", "-i", deb, zebra, libswift, safemode, preferenceloader, substitute], root: true)
+                                spawn(command: "/usr/bin/dpkg", args: ["--force-all", "-i", deb, libswift, safemode, preferenceloader, substitute], root: true)
                                 
                                 // fix potentially broken apt, dpkg, firmware, cy+cpu.arm64 but it is not installable
                                 spawn(command: "/usr/libexec/firmware", args: [""], root: true)
@@ -611,7 +603,9 @@ struct ContentView: View {
                                 spawn(command: "/usr/bin/sh", args: ["/launch_ssh_daemon.sh"], root: true)
                                 
                                 DispatchQueue.global(qos: .utility).async {
-                                    spawn(command: "/usr/bin/uicache", args: ["-a"], root: true)
+                                    spawn(command: "/usr/bin/plooshiuicache", args: ["-p", "/Applications/Sileo.app"], root: true)
+                                    spawn(command: "/usr/bin/plooshiuicache", args: ["-p", "/Applications/Cydia.app"], root: true)
+                                    spawn(command: "/usr/bin/plooshiuicache", args: ["-p", "/Applications/Zebra.app"], root: true)
                                     
                                     DispatchQueue.main.async {
                                         console.log("[*] Registered apps in /Applications")
