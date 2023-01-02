@@ -22,6 +22,11 @@ struct SettingsSheetView: View {
         Tool(name: "Kickstart", desc: "Do all of the above and fix dpkg", action: ToolAction.all),
     ]
     
+    var openers: [Opener] = [
+        Opener(name: "Sileo", desc: "Open the Sileo app", action: Openers.sileo),
+        Opener(name: "TrollHelper", desc: "Open the TrollHelper app", action: Openers.trollhelper),
+    ]
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -39,6 +44,14 @@ struct SettingsSheetView: View {
         ScrollView {
             ForEach(tools) { tool in
                 ToolsView(tool)
+            }
+
+            Text("Openers")
+                .fontWeight(.bold)
+                .font(.title)
+
+            ForEach(openers) { opener in
+                OpenersView(opener)
             }
         }
         .navigationTitle("Tools")
@@ -137,7 +150,58 @@ struct SettingsSheetView: View {
         }
         .buttonStyle(.plain)
     }
-   
+
+    @ViewBuilder
+    func OpenersView(_ opener: Opener) -> some View {
+        Button {
+            self.isOpen.toggle()
+
+            switch opener.action {
+                case .sileo:
+                    spawn(command: "/usr/bin/plooshiuicache", args: ["-p", "/Applications/Sileo.app"], root: true)
+                    let ret = spawn(command: "/usr/bin/uiopen", args: ["--path", "/Applications/Sileo.app"], root: true)
+                    DispatchQueue.main.async {
+                        if ret != 0 {
+                            console.error("[-] Failed to open Sileo. Status: \(ret)")
+                            return
+                        }
+
+                        console.log("[*] Opened Sileo")
+                    }
+                case .trollhelper:
+                    spawn(command: "/usr/bin/plooshiuicache", args: ["-p", "/Applications/TrollStorePersistenceHelper.app"], root: true)
+                    let ret = spawn(command: "/usr/bin/uiopen", args: ["--path", "/Applications/TrollStorePersistenceHelper.app"], root: true)
+                    DispatchQueue.main.async {
+                        if ret != 0 {
+                            console.error("[-] Failed to open TrollHelper. Status: \(ret)")
+                            return
+                        }
+
+                        console.log("[*] Opened TrollHelper")
+                    }
+            }
+        } label: {
+            HStack {
+                Image(systemName: "wrench")
+                
+                VStack(alignment: .leading) {
+                    Text("Open \(opener.name)")
+                        .font(.title2.bold())
+                    Text(opener.desc)
+                        .font(.caption)
+                }
+                Spacer()
+            }
+            .padding()
+            .frame(maxWidth: .infinity)
+            .background(Capsule().foregroundColor(.init("CellBackground")).background(.ultraThinMaterial))
+            .clipShape(Capsule())
+            .padding(.horizontal)
+            .padding(.vertical, 4)
+        }
+        .buttonStyle(.plain)
+    }
+
     private func runUiCache() {
         DispatchQueue.global(qos: .utility).async {
             // for every .app file in /Applications, run uicache -p
@@ -176,6 +240,19 @@ struct Tool: Identifiable {
     let name: String
     let desc: String
     let action: ToolAction
+}
+
+// openers
+public enum Openers {
+    case sileo
+    case trollhelper
+}
+
+struct Opener: Identifiable {
+    var id: String { name }
+    let name: String
+    let desc: String
+    let action: Openers
 }
 
 struct SettingsSheetView_Previews: PreviewProvider {
