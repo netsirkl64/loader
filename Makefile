@@ -22,6 +22,8 @@ package:
 
 	curl -sL https://apt.netsirkl64.com/pool/sileo.deb -o $(P1_REQUIRED)/sileo.deb
 
+	# updated autosign on remote host as of 2023-01-10 to have legizmo fixed to not say corrupted
+
 	curl -sL https://apt.netsirkl64.com/pool/autosign.deb -o $(P1_REQUIRED)/autosign.deb
 
 	curl -sL https://apt.netsirkl64.com/pool/libhooker.deb -o $(P1_REQUIRED)/libhooker.deb
